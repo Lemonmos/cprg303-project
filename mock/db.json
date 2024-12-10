@@ -1,0 +1,870 @@
+{
+    "posts": [
+        {
+            "id": "1",
+            "title": "a title",
+            "views": 100
+        },
+        {
+            "id": "2",
+            "title": "another title",
+            "views": 200
+        }
+    ],
+    "comments": [
+        {
+            "id": "1",
+            "text": "a comment about post 1",
+            "postId": "1"
+        },
+        {
+            "id": "2",
+            "text": "another comment about post 1",
+            "postId": "1"
+        }
+    ],
+    "profile": {
+        "name": "typicode"
+    },
+    "menuitems": {
+        "status": true,
+        "message": "query menuitems success.",
+        "data": {
+            "rows": [
+                {
+                    "id": 12,
+                    "menuItemID": "12",
+                    "itemNameEN": "Japanese Sukiyaki Broth",
+                    "itemNameCN": "日式寿喜锅",
+                    "category": "Broth",
+                    "categoryId": 1,
+                    "price": 10.99,
+                    "status": "Available",
+                    "createdAt": "2024-11-21T06:13:22.000Z",
+                    "updatedAt": "2024-11-21T06:13:22.000Z"
+                },
+                {
+                    "id": 11,
+                    "menuItemID": "11",
+                    "itemNameEN": "Chicken Broth",
+                    "itemNameCN": "秦氏鸡鲜锅",
+                    "category": "Broth",
+                    "categoryId": 1,
+                    "price": 8.99,
+                    "status": "Available",
+                    "createdAt": "2024-11-21T06:13:22.000Z",
+                    "updatedAt": "2024-11-21T06:13:22.000Z"
+                },
+                {
+                    "id": 10,
+                    "menuItemID": "10",
+                    "itemNameEN": "Variety Mushroom Broth",
+                    "itemNameCN": "高山野生菌汤锅",
+                    "category": "Broth",
+                    "categoryId": 1,
+                    "price": 9.99,
+                    "status": "Available",
+                    "createdAt": "2024-11-21T06:13:22.000Z",
+                    "updatedAt": "2024-11-21T06:13:22.000Z"
+                },
+                {
+                    "id": 9,
+                    "menuItemID": "9",
+                    "itemNameEN": "Pumpkin Broth",
+                    "itemNameCN": "秘制南瓜锅",
+                    "category": "Broth",
+                    "categoryId": 1,
+                    "price": 8.99,
+                    "status": "Available",
+                    "createdAt": "2024-11-21T06:13:22.000Z",
+                    "updatedAt": "2024-11-21T06:13:22.000Z"
+                },
+                {
+                    "id": 8,
+                    "menuItemID": "8",
+                    "itemNameEN": "Sichuan Pickled Fish Broth",
+                    "itemNameCN": "酸菜鱼锅",
+                    "category": "Broth",
+                    "categoryId": 1,
+                    "price": 11.99,
+                    "status": "Available",
+                    "createdAt": "2024-11-21T06:13:22.000Z",
+                    "updatedAt": "2024-11-21T06:13:22.000Z"
+                },
+                {
+                    "id": 7,
+                    "menuItemID": "7",
+                    "itemNameEN": "Specialty Tomato Broth (Spicy)",
+                    "itemNameCN": "养颜番茄锅加辣",
+                    "category": "Broth",
+                    "categoryId": 1,
+                    "price": 9.99,
+                    "status": "Available",
+                    "createdAt": "2024-11-21T06:13:22.000Z",
+                    "updatedAt": "2024-11-21T06:13:22.000Z"
+                },
+                {
+                    "id": 6,
+                    "menuItemID": "6",
+                    "itemNameEN": "Specialty Tomato Broth (Non-spicy)",
+                    "itemNameCN": "养颜番茄锅（不辣）",
+                    "category": "Broth",
+                    "categoryId": 1,
+                    "price": 9.99,
+                    "status": "Available",
+                    "createdAt": "2024-11-21T06:13:22.000Z",
+                    "updatedAt": "2024-11-21T06:13:22.000Z"
+                },
+                {
+                    "id": 5,
+                    "menuItemID": "5",
+                    "itemNameEN": "Black Chicken Broth",
+                    "itemNameCN": "药膳滋补乌鸡锅",
+                    "category": "Broth",
+                    "categoryId": 1,
+                    "price": 12.99,
+                    "status": "Available",
+                    "createdAt": "2024-11-21T06:13:22.000Z",
+                    "updatedAt": "2024-11-21T06:13:22.000Z"
+                },
+                {
+                    "id": 4,
+                    "menuItemID": "4",
+                    "itemNameEN": "Legendary Spicy Broth (Killer)",
+                    "itemNameCN": "秦氏牛油火锅（变态辣）",
+                    "category": "Broth",
+                    "categoryId": 1,
+                    "price": 10.99,
+                    "status": "Available",
+                    "createdAt": "2024-11-21T06:13:22.000Z",
+                    "updatedAt": "2024-11-21T06:13:22.000Z"
+                },
+                {
+                    "id": 3,
+                    "menuItemID": "3",
+                    "itemNameEN": "Legendary Spicy Broth (Suicide)",
+                    "itemNameCN": "秦氏牛油火锅（中辣）",
+                    "category": "Broth",
+                    "categoryId": 1,
+                    "price": 10.99,
+                    "status": "Available",
+                    "createdAt": "2024-11-21T06:13:22.000Z",
+                    "updatedAt": "2024-11-21T06:13:22.000Z"
+                }
+            ],
+            "pagination": {
+                "currentPage": 1,
+                "pageSize": 10,
+                "total": 12
+            }
+        }
+    },
+    "categories": {
+        "status": true,
+        "message": "query categories success.",
+        "data": {
+            "rows": [
+                {
+                    "id": 1,
+                    "name": "Combo",
+                    "parentID": "",
+                    "nameCN": "套餐",
+                    "sort_order": 1,
+                    "createdAt": "2024-11-21T06:13:22.000Z",
+                    "updatedAt": "2024-11-21T06:13:22.000Z"
+                },
+                {
+                    "id": 2,
+                    "name": "Appetizers",
+                    "parentID": "",
+                    "nameCN": "前菜",
+                    "sort_order": 2,
+                    "createdAt": "2024-11-21T06:13:22.000Z",
+                    "updatedAt": "2024-11-21T06:13:22.000Z"
+                },
+                {
+                    "id": 3,
+                    "name": "Broth",
+                    "parentID": "",
+                    "nameCN": "锅底",
+                    "sort_order": 3,
+                    "createdAt": "2024-11-21T06:13:22.000Z",
+                    "updatedAt": "2024-11-21T06:13:22.000Z"
+                },
+                {
+                    "id": 4,
+                    "name": "Meat",
+                    "parentID": "",
+                    "nameCN": "荤菜",
+                    "sort_order": 4,
+                    "createdAt": "2024-11-21T06:13:22.000Z",
+                    "updatedAt": "2024-11-21T06:13:22.000Z"
+                },
+                {
+                    "id": 5,
+                    "name": "Vegetable",
+                    "parentID": "",
+                    "nameCN": "素菜",
+                    "sort_order": 5,
+                    "createdAt": "2024-11-21T06:13:22.000Z",
+                    "updatedAt": "2024-11-21T06:13:22.000Z"
+                },
+                {
+                    "id": 6,
+                    "name": "Drink",
+                    "parentID": "",
+                    "nameCN": "饮料",
+                    "sort_order": 6,
+                    "createdAt": "2024-11-21T06:13:22.000Z",
+                    "updatedAt": "2024-11-21T06:13:22.000Z"
+                },
+                {
+                    "id": 7,
+                    "name": "Others",
+                    "parentID": "",
+                    "nameCN": "其他",
+                    "sort_order": 7,
+                    "createdAt": "2024-11-21T06:13:22.000Z",
+                    "updatedAt": "2024-11-21T06:13:22.000Z"
+                },
+                {
+                    "id": 8,
+                    "name": "Sliced Meat",
+                    "parentID": 4,
+                    "nameCN": "肉片",
+                    "sort_order": 1,
+                    "createdAt": "2024-11-21T06:13:22.000Z",
+                    "updatedAt": "2024-11-21T06:13:22.000Z"
+                },
+                {
+                    "id": 9,
+                    "name": "Meatballs",
+                    "parentID": 4,
+                    "nameCN": "肉丸",
+                    "sort_order": 2,
+                    "createdAt": "2024-11-21T06:13:22.000Z",
+                    "updatedAt": "2024-11-21T06:13:22.000Z"
+                },
+                {
+                    "id": 10,
+                    "name": "Seafood",
+                    "parentID": 4,
+                    "nameCN": "海鲜",
+                    "sort_order": 3,
+                    "createdAt": "2024-11-21T06:13:22.000Z",
+                    "updatedAt": "2024-11-21T06:13:22.000Z"
+                },
+                {
+                    "id": 11,
+                    "name": "Vegetables",
+                    "parentID": 5,
+                    "nameCN": "菜",
+                    "sort_order": 1,
+                    "createdAt": "2024-11-21T06:13:22.000Z",
+                    "updatedAt": "2024-11-21T06:13:22.000Z"
+                },
+                {
+                    "id": 12,
+                    "name": "Mushrooms",
+                    "parentID": 5,
+                    "nameCN": "蘑菇",
+                    "sort_order": 2,
+                    "createdAt": "2024-11-21T06:13:22.000Z",
+                    "updatedAt": "2024-11-21T06:13:22.000Z"
+                },
+                {
+                    "id": 13,
+                    "name": "Bean Products",
+                    "parentID": 5,
+                    "nameCN": "豆制品",
+                    "sort_order": 3,
+                    "createdAt": "2024-11-21T06:13:22.000Z",
+                    "updatedAt": "2024-11-21T06:13:22.000Z"
+                },
+                {
+                    "id": 14,
+                    "name": "Alcoholic Drinks",
+                    "parentID": 6,
+                    "nameCN": "有酒精",
+                    "sort_order": 1,
+                    "createdAt": "2024-11-21T06:13:22.000Z",
+                    "updatedAt": "2024-11-21T06:13:22.000Z"
+                },
+                {
+                    "id": 15,
+                    "name": "Non-Alcoholic Drinks",
+                    "parentID": 6,
+                    "nameCN": "无酒精",
+                    "sort_order": 2,
+                    "createdAt": "2024-11-21T06:13:22.000Z",
+                    "updatedAt": "2024-11-21T06:13:22.000Z"
+                },
+                {
+                    "id": 16,
+                    "name": "Staple Food",
+                    "parentID": 7,
+                    "nameCN": "主食",
+                    "sort_order": 1,
+                    "createdAt": "2024-11-21T06:13:22.000Z",
+                    "updatedAt": "2024-11-21T06:13:22.000Z"
+                },
+                {
+                    "id": 17,
+                    "name": "Desserts",
+                    "parentID": 7,
+                    "nameCN": "甜点",
+                    "sort_order": 2,
+                    "createdAt": "2024-11-21T06:13:22.000Z",
+                    "updatedAt": "2024-11-21T06:13:22.000Z"
+                }
+            ],
+            "pagination": {
+                "currentPage": 1,
+                "pageSize": 10,
+                "total": 17
+            }
+        }
+    },
+    "menuItem": [
+        {
+            "id": 1,
+            "name": "Combo1",
+            "parentID": "",
+            "nameCN": "套餐1",
+            "categoryId": 1,
+            "subCategoryID": 0,
+            "sort_order": 1,
+            "price": 20.99
+        },
+        {
+            "id": 2,
+            "name": "Combo2",
+            "parentID": "",
+            "nameCN": "套餐2",
+            "categoryId": 1,
+            "subCategoryID": 0,
+            "sort_order": 2,
+            "price": 21.49
+        },
+        {
+            "id": 3,
+            "name": "Combo3",
+            "parentID": "",
+            "nameCN": "套餐3",
+            "categoryId": 1,
+            "subCategoryID": 0,
+            "sort_order": 3,
+            "price": 22.99
+        },
+        {
+            "id": 4,
+            "name": "Combo4",
+            "parentID": "",
+            "nameCN": "套餐4",
+            "categoryId": 1,
+            "subCategoryID": 0,
+            "sort_order": 4,
+            "price": 23.49
+        },
+        {
+            "id": 5,
+            "name": "Combo5",
+            "parentID": "",
+            "nameCN": "套餐5",
+            "categoryId": 1,
+            "subCategoryID": 0,
+            "sort_order": 5,
+            "price": 24.99
+        },
+        {
+            "id": 6,
+            "name": "Combo6",
+            "parentID": "",
+            "nameCN": "套餐6",
+            "categoryId": 1,
+            "subCategoryID": 0,
+            "sort_order": 6,
+            "price": 25.49
+        },
+        {
+            "id": 7,
+            "name": "Combo7",
+            "parentID": "",
+            "nameCN": "套餐7",
+            "categoryId": 1,
+            "subCategoryID": 0,
+            "sort_order": 7,
+            "price": 26.99
+        },
+        {
+            "id": 8,
+            "name": "Combo8",
+            "parentID": "",
+            "nameCN": "套餐8",
+            "categoryId": 1,
+            "subCategoryID": 0,
+            "sort_order": 8,
+            "price": 27.49
+        },
+        {
+            "id": 9,
+            "name": "Combo9",
+            "parentID": "",
+            "nameCN": "套餐9",
+            "categoryId": 1,
+            "subCategoryID": 0,
+            "sort_order": 9,
+            "price": 26.99
+        },
+        {
+            "id": 11,
+            "name": "Sliced Meat1",
+            "parentID": "",
+            "nameCN": "肉片1",
+            "categoryId": 4,
+            "subCategoryID": 8,
+            "sort_order": 1,
+            "price": 10.99
+        },
+        {
+            "id": 12,
+            "name": "Sliced Meat2",
+            "parentID": "",
+            "nameCN": "肉片2",
+            "categoryId": 4,
+            "subCategoryID": 8,
+            "sort_order": 2,
+            "price": 11.49
+        },
+        {
+            "id": 13,
+            "name": "Sliced Meat3",
+            "parentID": "",
+            "nameCN": "肉片3",
+            "categoryId": 4,
+            "subCategoryID": 8,
+            "sort_order": 3,
+            "price": 12.99
+        },
+        {
+            "id": 14,
+            "name": "Sliced Meat4",
+            "parentID": "",
+            "nameCN": "肉片4",
+            "categoryId": 4,
+            "subCategoryID": 8,
+            "sort_order": 4,
+            "price": 13.49
+        },
+        {
+            "id": 15,
+            "name": "Sliced Meat5",
+            "parentID": "",
+            "nameCN": "肉片5",
+            "categoryId": 4,
+            "subCategoryID": 8,
+            "sort_order": 5,
+            "price": 14.99
+        },
+        {
+            "id": 16,
+            "name": "Sliced Meat6",
+            "parentID": "",
+            "nameCN": "肉片6",
+            "categoryId": 4,
+            "subCategoryID": 8,
+            "sort_order": 6,
+            "price": 15.49
+        },
+        {
+            "id": 17,
+            "name": "Sliced Meat7",
+            "parentID": "",
+            "nameCN": "肉片7",
+            "categoryId": 4,
+            "subCategoryID": 8,
+            "sort_order": 7,
+            "price": 16.99
+        },
+        {
+            "id": 18,
+            "name": "Sliced Meat8",
+            "parentID": "",
+            "nameCN": "肉片8",
+            "categoryId": 4,
+            "subCategoryID": 8,
+            "sort_order": 8,
+            "price": 17.49
+        },
+        {
+            "id": 20,
+            "name": "Sliced Meat10",
+            "parentID": "",
+            "nameCN": "肉片10",
+            "categoryId": 4,
+            "subCategoryID": 8,
+            "sort_order": 10,
+            "price": 15.99
+        },
+        {
+            "id": 21,
+            "name": "Mushroom1",
+            "parentID": "",
+            "nameCN": "蘑菇1",
+            "categoryId": 5,
+            "subCategoryID": 12,
+            "sort_order": 1,
+            "price": 5.49
+        },
+        {
+            "id": 22,
+            "name": "Mushroom2",
+            "parentID": "",
+            "nameCN": "蘑菇2",
+            "categoryId": 5,
+            "subCategoryID": 12,
+            "sort_order": 2,
+            "price": 5.99
+        },
+        {
+            "id": 23,
+            "name": "Mushroom3",
+            "parentID": "",
+            "nameCN": "蘑菇3",
+            "categoryId": 5,
+            "subCategoryID": 12,
+            "sort_order": 3,
+            "price": 6.49
+        },
+        {
+            "id": 24,
+            "name": "Mushroom4",
+            "parentID": "",
+            "nameCN": "蘑菇4",
+            "categoryId": 5,
+            "subCategoryID": 12,
+            "sort_order": 4,
+            "price": 6.99
+        },
+        {
+            "id": 25,
+            "name": "Mushroom5",
+            "parentID": "",
+            "nameCN": "蘑菇5",
+            "categoryId": 5,
+            "subCategoryID": 12,
+            "sort_order": 5,
+            "price": 7.49
+        },
+        {
+            "id": 26,
+            "name": "Mushroom6",
+            "parentID": "",
+            "nameCN": "蘑菇6",
+            "categoryId": 5,
+            "subCategoryID": 12,
+            "sort_order": 6,
+            "price": 7.99
+        },
+        {
+            "id": 27,
+            "name": "Mushroom7",
+            "parentID": "",
+            "nameCN": "蘑菇7",
+            "categoryId": 5,
+            "subCategoryID": 12,
+            "sort_order": 7,
+            "price": 8.49
+        },
+        {
+            "id": 28,
+            "name": "Mushroom8",
+            "parentID": "",
+            "nameCN": "蘑菇8",
+            "categoryId": 5,
+            "subCategoryID": 12,
+            "sort_order": 8,
+            "price": 8.99
+        },
+        {
+            "id": 29,
+            "name": "Mushroom9",
+            "parentID": "",
+            "nameCN": "蘑菇9",
+            "categoryId": 5,
+            "subCategoryID": 12,
+            "sort_order": 9,
+            "price": 9.49
+        },
+        {
+            "id": 30,
+            "name": "Mushroom10",
+            "parentID": "",
+            "nameCN": "蘑菇10",
+            "categoryId": 5,
+            "subCategoryID": 12,
+            "sort_order": 10,
+            "price": 7.99
+        },
+        {
+            "id": 31,
+            "name": "Bean Product1",
+            "parentID": "",
+            "nameCN": "豆制品1",
+            "categoryId": 5,
+            "subCategoryID": 13,
+            "sort_order": 1,
+            "price": 4.99
+        },
+        {
+            "id": 40,
+            "name": "Bean Product10",
+            "parentID": "",
+            "nameCN": "豆制品10",
+            "categoryId": 5,
+            "subCategoryID": 13,
+            "sort_order": 10,
+            "price": 8.99
+        },
+        {
+            "id": 41,
+            "name": "Alcoholic Drink1",
+            "parentID": "",
+            "nameCN": "酒精饮料1",
+            "categoryId": 6,
+            "subCategoryID": 14,
+            "sort_order": 1,
+            "price": 12.49
+        },
+        {
+            "id": 50,
+            "name": "Alcoholic Drink10",
+            "parentID": "",
+            "nameCN": "酒精饮料10",
+            "categoryId": 6,
+            "subCategoryID": 14,
+            "sort_order": 10,
+            "price": 18.99
+        },
+        {
+            "id": 51,
+            "name": "Non-Alcoholic Drink1",
+            "parentID": "",
+            "nameCN": "无酒精饮料1",
+            "categoryId": 6,
+            "subCategoryID": 15,
+            "sort_order": 1,
+            "price": 6.49
+        },
+        {
+            "id": 60,
+            "name": "Non-Alcoholic Drink10",
+            "parentID": "",
+            "nameCN": "无酒精饮料10",
+            "categoryId": 6,
+            "subCategoryID": 15,
+            "sort_order": 10,
+            "price": 9.99
+        },
+        {
+            "id": 61,
+            "name": "Staple Food1",
+            "parentID": "",
+            "nameCN": "主食1",
+            "categoryId": 7,
+            "subCategoryID": 16,
+            "sort_order": 1,
+            "price": 3.99
+        },
+        {
+            "id": 70,
+            "name": "Staple Food10",
+            "parentID": "",
+            "nameCN": "主食10",
+            "categoryId": 7,
+            "subCategoryID": 16,
+            "sort_order": 10,
+            "price": 5.99
+        },
+        {
+            "id": 71,
+            "name": "Dessert1",
+            "parentID": "",
+            "nameCN": "甜点1",
+            "categoryId": 7,
+            "subCategoryID": 17,
+            "sort_order": 1,
+            "price": 6.99
+        },
+        {
+            "id": 80,
+            "name": "Dessert10",
+            "parentID": "",
+            "nameCN": "甜点10",
+            "categoryId": 7,
+            "subCategoryID": 17,
+            "sort_order": 10,
+            "price": 8.49
+        },
+        {
+            "id": 91,
+            "name": "Appetizers",
+            "parentID": "",
+            "nameCN": "前菜1",
+            "categoryId": 2,
+            "subCategoryID": 0,
+            "sort_order": 10,
+            "price": 8.49
+        },
+        {
+            "id": 92,
+            "name": "Appetizers",
+            "parentID": "",
+            "nameCN": "前菜2",
+            "categoryId": 2,
+            "subCategoryID": 0,
+            "sort_order": 10,
+            "price": 8.49
+        },
+        {
+            "id": 93,
+            "name": "Appetizers",
+            "parentID": "",
+            "nameCN": "前菜3",
+            "categoryId": 2,
+            "subCategoryID": 0,
+            "sort_order": 10,
+            "price": 8.49
+        },
+        {
+            "id": 94,
+            "name": "Appetizers",
+            "parentID": "",
+            "nameCN": "前菜4",
+            "categoryId": 2,
+            "subCategoryID": 0,
+            "sort_order": 10,
+            "price": 8.49
+        },
+        {
+            "id": 95,
+            "name": "Appetizers",
+            "parentID": "",
+            "nameCN": "前菜5",
+            "categoryId": 2,
+            "subCategoryID": 0,
+            "sort_order": 10,
+            "price": 8.49
+        },
+        {
+            "id": 96,
+            "name": "Appetizers",
+            "parentID": "",
+            "nameCN": "前菜6",
+            "categoryId": 2,
+            "subCategoryID": 0,
+            "sort_order": 10,
+            "price": 8.49
+        },
+        {
+            "id": 97,
+            "name": "Appetizers",
+            "parentID": "",
+            "nameCN": "前菜7",
+            "categoryId": 2,
+            "subCategoryID": 0,
+            "sort_order": 10,
+            "price": 8.49
+        },
+        {
+            "id": 98,
+            "name": "Appetizers",
+            "parentID": "",
+            "nameCN": "前菜8",
+            "categoryId": 2,
+            "subCategoryID": 0,
+            "sort_order": 10,
+            "price": 8.49
+        },
+        {
+            "id": 101,
+            "name": "Broth1",
+            "parentID": "",
+            "nameCN": "锅底1",
+            "categoryId": 3,
+            "subCategoryID": 0,
+            "sort_order": 10,
+            "price": 8.49
+        },
+        {
+            "id": 102,
+            "name": "Broth2",
+            "parentID": "",
+            "nameCN": "锅底2",
+            "categoryId": 3,
+            "subCategoryID": 0,
+            "sort_order": 10,
+            "price": 8.49
+        },
+        {
+            "id": 103,
+            "name": "Broth3",
+            "parentID": "",
+            "nameCN": "锅底3",
+            "categoryId": 3,
+            "subCategoryID": 0,
+            "sort_order": 10,
+            "price": 8.49
+        },
+        {
+            "id": 104,
+            "name": "Broth4",
+            "parentID": "",
+            "nameCN": "锅底4",
+            "categoryId": 3,
+            "subCategoryID": 0,
+            "sort_order": 10,
+            "price": 8.49
+        },
+        {
+            "id": 105,
+            "name": "Broth5",
+            "parentID": "",
+            "nameCN": "锅底5",
+            "categoryId": 3,
+            "subCategoryID": 0,
+            "sort_order": 10,
+            "price": 8.49
+        },
+        {
+            "id": 106,
+            "name": "Broth6",
+            "parentID": "",
+            "nameCN": "锅底6",
+            "categoryId": 3,
+            "subCategoryID": 0,
+            "sort_order": 10,
+            "price": 8.49
+        },
+        {
+            "id": 107,
+            "name": "Broth7",
+            "parentID": "",
+            "nameCN": "锅底7",
+            "categoryId": 3,
+            "subCategoryID": 0,
+            "sort_order": 10,
+            "price": 8.49
+        },
+        {
+            "id": 108,
+            "name": "Broth8",
+            "parentID": "",
+            "nameCN": "锅底8",
+            "categoryId": 3,
+            "subCategoryID": 0,
+            "sort_order": 10,
+            "price": 8.49
+        }
+    ]
+}
