@@ -303,13 +303,12 @@ const NavigationBar = () => {
         keyExtractor={(item, index) => index.toString()}
         ListHeaderComponent={() => (
           <View>
-            {/* Table Header */}
             <View style={styles.tableHeader}>
               <Text style={styles.detailQty}>Qty</Text>
               <Text style={styles.detailName}>Name</Text>
               <Text style={styles.detailAmount}>Amount</Text>
             </View>
-            <View style={styles.headerDivider} /> {/* Dark divider */}
+            <View style={styles.headerDivider} />
           </View>
         )}
       />
@@ -349,7 +348,7 @@ const NavigationBar = () => {
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
             <Text style={styles.modalTitle}>Cart</Text>
-            <View style={{ flex: 1, maxHeight: 400 }}>
+            <View>
               <FlatList
                 data={cartItems}
                 renderItem={renderCartItem}
@@ -388,7 +387,7 @@ const NavigationBar = () => {
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
             <Text style={styles.modalTitle}>Previous Orders</Text>
-            <View style={{ maxHeight: 400, flex: 1 }}>
+            <View>
               <FlatList
                 data={orderHistory}
                 renderItem={renderOrderItem}
@@ -445,7 +444,8 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0,0,0,0.5)",
   },
   modalContent: {
-    width: "90%",
+    width: "95%", // 根据平台动态设置宽度
+    height: "auto", // 限制高度，避免内容溢出屏幕
     backgroundColor: "#fff",
     borderRadius: 10,
     padding: 20,
@@ -454,6 +454,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+    alignSelf: "center", // 居中对齐
   },
   modalTitle: {
     fontSize: 20,
