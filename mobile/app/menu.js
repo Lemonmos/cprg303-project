@@ -11,7 +11,12 @@ import {
   Alert,
 } from "react-native";
 import { useEffect, useState } from "react";
-import { getMenuitems, getCategories, getMenuitem } from "../utils/api";
+import {
+  getMenuitems,
+  getCategories,
+  getMenuitem,
+  getCombomenuitems,
+} from "../utils/api";
 import { useCart } from "./context/cartContext";
 import Toast from "react-native-toast-message";
 
@@ -44,135 +49,12 @@ export default function Menu() {
   const [modalData, setModalData] = useState([]);
   const [modalType, setModalType] = useState("");
 
-  const sampleData = {
-    broth: [
-      {
-        id: 1,
-        name: "Chicken Broth",
-        nameCN: "秦氏三鲜锅",
-        price: 0.0,
-        image: require("../assets/broth1.png"), // Placeholder 图片
-      },
-      {
-        id: 2,
-        name: "Variety Mushroom",
-        nameCN: "高山野生菌锅",
-        price: 3.0,
-        image: require("../assets/broth1.png"),
-      },
-      {
-        id: 3,
-        name: "Chine's Legendary Spicy Broth",
-        nameCN: "秦氏牛油火锅",
-        price: 3.0,
-        image: require("../assets/broth1.png"),
-      },
-      {
-        id: 4,
-        name: "Specialty Tomato Broth",
-        nameCN: "养颜番茄锅",
-        price: 3.0,
-        image: require("../assets/broth1.png"),
-      },
-    ],
-    vege: [
-      {
-        id: 5,
-        name: "Spinach",
-        nameCN: "菠菜",
-        price: 2.25,
-        image: require("../assets/vegetable.png"), // Placeholder 图片
-      },
-      {
-        id: 6,
-        name: "Cabbage",
-        nameCN: "大白菜",
-        price: 0.0,
-        image: require("../assets/vegetable.png"),
-      },
-      {
-        id: 7,
-        name: "Lettuce",
-        nameCN: "唐生菜",
-        price: 0.0,
-        image: require("../assets/vegetable.png"),
-      },
-      {
-        id: 8,
-        name: "Bean Sprout",
-        nameCN: "豆芽",
-        price: 0.0,
-        image: require("../assets/vegetable.png"),
-      },
-      {
-        id: 9,
-        name: "Broccoli",
-        nameCN: "西蓝花",
-        price: 0.0,
-        image: require("../assets/vegetable.png"),
-      },
-    ],
-    meat: [
-      {
-        id: 10,
-        name: "Tenderloin Pork Slice",
-        nameCN: "老肉片",
-        price: 0.0,
-        image: require("../assets/meat.png"),
-      },
-      {
-        id: 11,
-        name: "Chicken Slice",
-        nameCN: "鸡肉片",
-        price: 0.0,
-        image: require("../assets/meat.png"),
-      },
-      {
-        id: 12,
-        name: "Beef Tripe",
-        nameCN: "牛百叶",
-        price: 0.0,
-        image: require("../assets/meat.png"),
-      },
-      {
-        id: 13,
-        name: "Quail Egg",
-        nameCN: "鹌鹑蛋",
-        price: 0.0,
-        image: require("../assets/meat.png"),
-      },
-      {
-        id: 14,
-        name: "Spam",
-        nameCN: "午餐肉",
-        price: 0.0,
-        image: require("../assets/meat.png"),
-      },
-    ],
-    main: [
-      {
-        id: 15,
-        name: "Rice",
-        nameCN: "米饭",
-        price: 0.0,
-        image: require("../assets/rice.png"), // Placeholder 图片
-      },
-      {
-        id: 16,
-        name: "Udon Noodels",
-        nameCN: "乌冬面",
-        price: 0.0,
-        image: require("../assets/rice.png"),
-      },
-      {
-        id: 17,
-        name: "Ramen",
-        nameCN: "日式拉面",
-        price: 0.0,
-        image: require("../assets/rice.png"),
-      },
-    ],
-  };
+  const [sampleData, setSampleData] = useState({
+    broth: [],
+    vege: [],
+    meat: [],
+    main: [],
+  });
 
   //open combo menuitem list
   const openModal = (type, index) => {
@@ -210,7 +92,7 @@ export default function Menu() {
   }, [quantities]);
 
   useEffect(() => {
-    console.log("-----Cart Items: ", cartItems);
+    // console.log("-----Cart Items: ", cartItems);
   }, [cartItems]);
 
   useEffect(() => {
@@ -219,12 +101,17 @@ export default function Menu() {
   }, [cartItems]);
 
   useEffect(() => {
-    console.log("isComboPage:" + isComboPage);
+    // console.log("isComboPage:" + isComboPage);
     // console.log("cartItems" + JSON.stringify(cartItems));
   }, [isComboPage]);
 
   useEffect(() => {
-    console.log("-----comboSelection" + JSON.stringify(comboSelection));
+    // console.log("isComboPage:" + isComboPage);
+    console.log("sampleData" + JSON.stringify(sampleData));
+  }, [sampleData]);
+
+  useEffect(() => {
+    // console.log("-----comboSelection" + JSON.stringify(comboSelection));
   }, [comboSelection]);
 
   const updateCartStatus = () => {
@@ -235,7 +122,7 @@ export default function Menu() {
       }
     });
     setCartStatus({ ...cartStatus, comboInCart: comboInCart });
-    console.log("cartStatus:" + JSON.stringify(cartStatus));
+    // console.log("cartStatus:" + JSON.stringify(cartStatus));
   };
 
   const decreaseQuantity = (item) => {
@@ -395,7 +282,7 @@ export default function Menu() {
   };
 
   const handleSelectCombo = (item) => {
-    console.log("====handleSelectCombo");
+    // console.log("====handleSelectCombo");
     // setComboSelection((prev) => ({ ...prev, combo: item }));
     setComboSelection((prev) => {
       return { ...prev, combo: item };
@@ -778,13 +665,37 @@ export default function Menu() {
         const transformedCategoriesResult = transformMenuData(
           categoriesResult.data.rows
         );
-        console.log(
-          "transformedCategoriesResult:",
-          transformedCategoriesResult
-        );
+        // console.log(
+        //   "transformedCategoriesResult:",
+        //   transformedCategoriesResult
+        // );
         // console.log(JSON.stringify(transformedCategoriesResult));
         setCategories(transformedCategoriesResult);
       }
+
+      const assets = {
+        "../assets/broth1.png": require("../assets/broth1.png"),
+        "../assets/vegetable.png": require("../assets/vegetable.png"),
+        "../assets/meat.png": require("../assets/meat.png"),
+        "../assets/rice.png": require("../assets/rice.png"),
+      };
+
+      let combomenuitemsData = await getCombomenuitems();
+      if (combomenuitemsData) {
+        setSampleData(
+          combomenuitemsData.reduce((acc, item) => {
+            // Use the assets map to resolve the image
+            const image = assets[item.image] || null; // Use null if the image is not found
+
+            const transformedItem = { ...item, image };
+
+            if (!acc[item.type]) acc[item.type] = [];
+            acc[item.type].push(transformedItem);
+            return acc;
+          })
+        );
+      }
+      console.log("s  ampleData:", JSON.stringify(sampleData));
     } catch (error) {
       console.error("error in fetching tasks", error);
     }

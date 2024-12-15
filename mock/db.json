@@ -720,5 +720,143 @@
             "sort_order": 10,
             "price": 8.49
         }
+    ],
+    "combomenuitems": [
+        {
+            "id": 1,
+            "name": "Chicken Broth",
+            "nameCN": "秦氏三鲜锅",
+            "price": 0.0,
+            "image": "../assets/broth1.png",
+            "type": "broth"
+        },
+        {
+            "id": 2,
+            "name": "Variety Mushroom",
+            "nameCN": "高山野生菌锅",
+            "price": 3.0,
+            "image": "../assets/broth1.png",
+            "type": "broth"
+        },
+        {
+            "id": 3,
+            "name": "Chine's Legendary Spicy Broth",
+            "nameCN": "秦氏牛油火锅",
+            "price": 3.0,
+            "image": "../assets/broth1.png",
+            "type": "broth"
+        },
+        {
+            "id": 4,
+            "name": "Specialty Tomato Broth",
+            "nameCN": "养颜番茄锅",
+            "price": 3.0,
+            "image": "../assets/broth1.png",
+            "type": "broth"
+        },
+        {
+            "id": 5,
+            "name": "Spinach",
+            "nameCN": "菠菜",
+            "price": 2.25,
+            "image": "../assets/vegetable.png",
+            "type": "vege"
+        },
+        {
+            "id": 6,
+            "name": "Cabbage",
+            "nameCN": "大白菜",
+            "price": 0.0,
+            "image": "../assets/vegetable.png",
+            "type": "vege"
+        },
+        {
+            "id": 7,
+            "name": "Lettuce",
+            "nameCN": "唐生菜",
+            "price": 0.0,
+            "image": "../assets/vegetable.png",
+            "type": "vege"
+        },
+        {
+            "id": 8,
+            "name": "Bean Sprout",
+            "nameCN": "豆芽",
+            "price": 0.0,
+            "image": "../assets/vegetable.png",
+            "type": "vege"
+        },
+        {
+            "id": 9,
+            "name": "Broccoli",
+            "nameCN": "西蓝花",
+            "price": 0.0,
+            "image": "../assets/vegetable.png",
+            "type": "vege"
+        },
+        {
+            "id": 10,
+            "name": "Tenderloin Pork Slice",
+            "nameCN": "老肉片",
+            "price": 0.0,
+            "image": "../assets/meat.png",
+            "type": "meat"
+        },
+        {
+            "id": 11,
+            "name": "Chicken Slice",
+            "nameCN": "鸡肉片",
+            "price": 0.0,
+            "image": "../assets/meat.png",
+            "type": "meat"
+        },
+        {
+            "id": 12,
+            "name": "Beef Tripe",
+            "nameCN": "牛百叶",
+            "price": 0.0,
+            "image": "../assets/meat.png",
+            "type": "meat"
+        },
+        {
+            "id": 13,
+            "name": "Quail Egg",
+            "nameCN": "鹌鹑蛋",
+            "price": 0.0,
+            "image": "../assets/meat.png",
+            "type": "meat"
+        },
+        {
+            "id": 14,
+            "name": "Spam",
+            "nameCN": "午餐肉",
+            "price": 0.0,
+            "image": "../assets/meat.png",
+            "type": "meat"
+        },
+        {
+            "id": 15,
+            "name": "Rice",
+            "nameCN": "米饭",
+            "price": 0.0,
+            "image": "../assets/rice.png",
+            "type": "main"
+        },
+        {
+            "id": 16,
+            "name": "Udon Noodels",
+            "nameCN": "乌冬面",
+            "price": 0.0,
+            "image": "../assets/rice.png",
+            "type": "main"
+        },
+        {
+            "id": 17,
+            "name": "Ramen",
+            "nameCN": "日式拉面",
+            "price": 0.0,
+            "image": "../assets/rice.png",
+            "type": "main"
+        }
     ]
 }

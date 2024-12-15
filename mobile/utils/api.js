@@ -41,42 +41,12 @@ export const getCategories = async () => {
   }
 };
 
-export const getTasks = async () => {
+export const getCombomenuitems = async () => {
   try {
-    const response = await api.get("/tasks");
+    const response = await api.get("/combomenuitems");
     return response.data;
   } catch (error) {
-    console.error("error in fetching tasks", error);
+    console.error("error in fetching categories", error);
     return [];
-  }
-};
-
-export const createPost = async (task) => {
-  try {
-    const response = await api.post("/tasks", task);
-    return response.data;
-  } catch (error) {
-    console.error("error in creating task", error);
-    return null;
-  }
-};
-
-export const updatePost = async (id, task) => {
-  try {
-    const response = await api.put(`/tasks/${id}`, task);
-    return response.data;
-  } catch (error) {
-    console.error("error in creating task", error);
-    return null;
-  }
-};
-
-export const deletePost = async (id) => {
-  try {
-    const response = await api.delete(`/tasks/${id}`);
-    return response.data;
-  } catch (error) {
-    console.error("error in delete task", error);
-    return null;
   }
 };
