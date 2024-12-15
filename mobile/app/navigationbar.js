@@ -11,33 +11,45 @@ import {
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useCart } from "./context/cartContext";
+import { useNavigation } from "@react-navigation/native";
+import Toast from "react-native-toast-message";
 
 const NavigationBar = () => {
+  const navigation = useNavigation();
   const [isCartVisible, setCartVisible] = useState(false);
-  const { addToCart, cartItems, decreaseFromCart, removeFromCart } = useCart();
+  const {
+    addToCart,
+    clearCart,
+    cartItems,
+    decreaseFromCart,
+    removeFromCart,
+    cartTotalPrice,
+    orderHistory,
+    setOrderHistory,
+    clearComboSelection,
+  } = useCart();
   const [isOrderHistoryVisible, setOrderHistoryVisible] = useState(false); // 控制历史订单弹框显示
 
-  const totalAmount = 1;
-  const orderHistory = [
-    {
-      orderId: "#002",
-      orderTime: "00:10",
-      items: [
-        { name: "Superior Beef Slice", quantity: 1, amount: 12 },
-        { name: "Superior Beef Slice", quantity: 1, amount: 5.99 },
-      ],
-      orderTotal: 17.99,
-    },
-    {
-      orderId: "#001",
-      orderTime: "00:00",
-      items: [
-        { name: "Superior Beef Slice", quantity: 1, amount: 15 },
-        { name: "Superior Beef Slice", quantity: 1, amount: 123.66 },
-      ],
-      orderTotal: 17.99,
-    },
-  ];
+  // const orderHistory = [
+  //   {
+  //     orderId: "#002",
+  //     orderTime: "00:10",
+  //     items: [
+  //       { name: "Superior Beef Slice", quantity: 1, amount: 12 },
+  //       { name: "Superior Beef Slice", quantity: 1, amount: 5.99 },
+  //     ],
+  //     orderTotal: 17.99,
+  //   },
+  //   {
+  //     orderId: "#001",
+  //     orderTime: "00:00",
+  //     items: [
+  //       { name: "Superior Beef Slice", quantity: 1, amount: 15 },
+  //       { name: "Superior Beef Slice", quantity: 1, amount: 123.66 },
+  //     ],
+  //     orderTotal: 17.99,
+  //   },
+  // ];
 
   const handleQuantityChange = (item, newQuantity) => {
     if (newQuantity < 1) {
@@ -50,6 +62,40 @@ const NavigationBar = () => {
         decreaseFromCart(item.id);
       }
     }
+  };
+
+  const handleSubmitOrder = () => {
+    setCartVisible(false);
+    Toast.show({
+      type: "success",
+      text1: `Submit order success`,
+    });
+    setOrderHistory((prev) => {
+      const newOrder = {
+        orderId: `#${prev.length + 1}`,
+        orderTime: new Date().toLocaleTimeString(),
+        items: cartItems.map((item) => {
+          if (item.isCombo) {
+            return {
+              name: item.combo.name + "/" + item.combo.nameCN,
+              quantity: 1,
+              amount: item.price.toFixed(2),
+            };
+          } else {
+            return {
+              name: item.name + "/" + item.nameCN,
+              quantity: item.quantity,
+              amount: (item.price * item.quantity).toFixed(2),
+            };
+          }
+        }),
+        orderTotal: cartTotalPrice,
+      };
+      console.log("====newOrder====", JSON.stringify(newOrder));
+      return [newOrder, ...prev];
+    });
+    clearCart();
+    clearComboSelection();
   };
 
   // const renderCartItem = ({ item }) => (
@@ -88,14 +134,84 @@ const NavigationBar = () => {
   //   </View>
   // );
 
+  // const renderCartItem = ({ item }) => {
+  //   if (item.combo) {
+  //     // Render combo item
+  //     return (
+  //       <View style={styles.cartComboItem}>
+  //         <Text style={styles.comboName}>
+  //           {item.combo.name} / {item.combo.nameCN} - ${item.price.toFixed(2)}
+  //         </Text>
+  //         <Text style={styles.comboDetails}>
+  //           {`Broth: ${item.broth[0]?.name} / ${item.broth[0]?.nameCN} `}
+  //           {item.meats.map(
+  //             (meat, index) =>
+  //               `+ Meat${index + 1}: ${meat.name} / ${meat.nameCN} `
+  //           )}
+  //           {item.vegetables.map(
+  //             (veg, index) => `+ Veg${index + 1}: ${veg.name} / ${veg.nameCN} `
+  //           )}
+  //           {`+ Staple: ${item.staple[0]?.name} / ${item.staple[0]?.nameCN}`}
+  //         </Text>
+  //         <View style={styles.comboActions}>
+  //           <TouchableOpacity style={styles.editButton}>
+  //             <Text style={styles.editButtonText}>Edit</Text>
+  //           </TouchableOpacity>
+  //           <TouchableOpacity
+  //             style={styles.deleteButton}
+  //             onPress={() => removeFromCart(item.id)}
+  //           >
+  //             <Text style={styles.deleteButtonText}>Delete</Text>
+  //           </TouchableOpacity>
+  //         </View>
+  //       </View>
+  //     );
+  //   }
+
+  //   // Render individual item
+  //   return (
+  //     <View style={styles.cartItem}>
+  //       <TouchableOpacity onPress={() => removeFromCart(item.id)}>
+  //         <Text style={styles.deleteButton}>×</Text>
+  //       </TouchableOpacity>
+  //       <Text style={styles.itemName}>
+  //         {item.name}/{item.nameCN}
+  //       </Text>
+
+  //       <View style={styles.quantityContainer}>
+  //         <TouchableOpacity onPress={() => decreaseFromCart(item.id)}>
+  //           <Text style={styles.decrementButton}>-</Text>
+  //         </TouchableOpacity>
+  //         <TextInput
+  //           style={styles.quantityInput}
+  //           value={String(item.quantity)}
+  //           keyboardType="numeric"
+  //           onChangeText={(value) => {
+  //             const parsedValue = parseInt(value, 10);
+  //             if (!isNaN(parsedValue)) {
+  //               handleQuantityChange(item, parsedValue);
+  //             }
+  //           }}
+  //         />
+  //         <TouchableOpacity onPress={() => addToCart(item)}>
+  //           <Text style={styles.incrementButton}>+</Text>
+  //         </TouchableOpacity>
+  //       </View>
+  //       <Text style={styles.itemTotal}>
+  //         ${(item.price * item.quantity).toFixed(2)}
+  //       </Text>
+  //     </View>
+  //   );
+  // };
+
+  //new
   const renderCartItem = ({ item }) => {
     if (item.combo) {
       // Render combo item
       return (
         <View style={styles.cartComboItem}>
           <Text style={styles.comboName}>
-            {item.combo.name} / {item.combo.nameCN} - $
-            {item.totalPrice.toFixed(2)}
+            {item.combo.name} / {item.combo.nameCN} - ${item.price.toFixed(2)}
           </Text>
           <Text style={styles.comboDetails}>
             {`Broth: ${item.broth[0]?.name} / ${item.broth[0]?.nameCN} `}
@@ -110,13 +226,13 @@ const NavigationBar = () => {
           </Text>
           <View style={styles.comboActions}>
             <TouchableOpacity style={styles.editButton}>
-              <Text>Edit</Text>
+              <Text style={styles.editButtonText}>Edit</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.deleteButton}
               onPress={() => removeFromCart(item.id)}
             >
-              <Text>Delete</Text>
+              <Text style={styles.deleteButtonText}>Delete</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -129,10 +245,17 @@ const NavigationBar = () => {
         <TouchableOpacity onPress={() => removeFromCart(item.id)}>
           <Text style={styles.deleteButton}>×</Text>
         </TouchableOpacity>
-        <Text style={styles.itemName}>
-          {item.name}/{item.nameCN}
-        </Text>
-        <Text style={styles.itemPrice}>${item.price.toFixed(2)}</Text>
+        <View style={styles.cartItemContent}>
+          <Text style={styles.itemName}>
+            {item.name} / {item.nameCN}
+          </Text>
+          <Text style={styles.itemPrice}>
+            ${item.price ? item.price.toFixed(2) : "0.00"}
+          </Text>
+          <Text style={styles.itemTotal}>
+            Total: ${(item.price * item.quantity).toFixed(2)}
+          </Text>
+        </View>
         <View style={styles.quantityContainer}>
           <TouchableOpacity onPress={() => decreaseFromCart(item.id)}>
             <Text style={styles.decrementButton}>-</Text>
@@ -152,9 +275,6 @@ const NavigationBar = () => {
             <Text style={styles.incrementButton}>+</Text>
           </TouchableOpacity>
         </View>
-        <Text style={styles.itemTotal}>
-          ${(item.price * item.quantity).toFixed(2)}
-        </Text>
       </View>
     );
   };
@@ -163,22 +283,36 @@ const NavigationBar = () => {
     <View style={styles.orderItem}>
       <View style={styles.orderHeader}>
         <Text style={styles.orderId}>{item.orderId}</Text>
-        <Text style={styles.orderTime}>Order Time: {item.orderTime}</Text>
+        <Text style={styles.orderTime}>Time: {item.orderTime}</Text>
+        <Text style={styles.orderTotal}>
+          Total: ${item.orderTotal.toFixed(2)}
+        </Text>
       </View>
       <FlatList
         data={item.items}
         renderItem={({ item }) => (
-          <View style={styles.orderDetails}>
-            <Text style={styles.detailQty}>{item.quantity}</Text>
-            <Text style={styles.detailName}>{item.name}</Text>
-            <Text style={styles.detailAmount}>${item.amount}</Text>
+          <View>
+            <View style={styles.orderDetails}>
+              <Text style={styles.detailQty}>{item.quantity}</Text>
+              <Text style={styles.detailName}>{item.name}</Text>
+              <Text style={styles.detailAmount}>${item.amount}</Text>
+            </View>
+            <View style={styles.itemDivider} />
           </View>
         )}
         keyExtractor={(item, index) => index.toString()}
+        ListHeaderComponent={() => (
+          <View>
+            {/* Table Header */}
+            <View style={styles.tableHeader}>
+              <Text style={styles.detailQty}>Qty</Text>
+              <Text style={styles.detailName}>Name</Text>
+              <Text style={styles.detailAmount}>Amount</Text>
+            </View>
+            <View style={styles.headerDivider} /> {/* Dark divider */}
+          </View>
+        )}
       />
-      <Text style={styles.orderTotal}>
-        Order Total: ${item.orderTotal.toFixed(2)}
-      </Text>
     </View>
   );
 
@@ -193,10 +327,9 @@ const NavigationBar = () => {
           <Text style={{ color: "#fff", fontSize: 16 }}>T1-1</Text>
         </View>
         <View style={styles.logoContainer}>
-          <Image
-            source={require("../assets/logo.png")} // 替换为实际的 Logo 文件路径
-            style={styles.logo}
-          />
+          <TouchableOpacity onPress={() => navigation.navigate("index")}>
+            <Image source={require("../assets/logo.png")} style={styles.logo} />
+          </TouchableOpacity>
         </View>
         <View style={styles.buttonContainer}>
           <TouchableOpacity onPress={() => setCartVisible(true)}>
@@ -206,32 +339,6 @@ const NavigationBar = () => {
       </View>
 
       {/* 购物车弹框 */}
-      {/* <Modal
-        animationType="none"
-        transparent={true}
-        visible={isCartVisible}
-        onRequestClose={() => setCartVisible(false)}
-      >
-        <View style={styles.modalContainer}>
-          <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>Cart</Text>
-            <FlatList
-              data={cartItems}
-              renderItem={renderCartItem}
-              keyExtractor={(item) => item.id}
-            />
-            <Text style={styles.totalAmount}>
-              Total Amount: ${totalAmount.toFixed(2)}
-            </Text>
-            <TouchableOpacity
-              style={styles.closeButton}
-              onPress={() => setCartVisible(false)}
-            >
-              <Text style={styles.closeButtonText}>Close</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal> */}
 
       <Modal
         animationType="slide"
@@ -242,20 +349,31 @@ const NavigationBar = () => {
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
             <Text style={styles.modalTitle}>Cart</Text>
-            <FlatList
-              data={cartItems}
-              renderItem={renderCartItem}
-              keyExtractor={(item) => item.id.toString()}
-            />
+            <View style={{ flex: 1, maxHeight: 400 }}>
+              <FlatList
+                data={cartItems}
+                renderItem={renderCartItem}
+                keyExtractor={(item) => item.id.toString()}
+              />
+            </View>
+
             <Text style={styles.totalAmount}>
-              Total Amount: ${totalAmount.toFixed(2)}
+              Total Amount: ${cartTotalPrice.toFixed(2)}
             </Text>
-            <TouchableOpacity
-              style={styles.closeButton}
-              onPress={() => setCartVisible(false)}
-            >
-              <Text style={styles.closeButtonText}>Close</Text>
-            </TouchableOpacity>
+            <>
+              <TouchableOpacity
+                style={styles.closeButton}
+                onPress={() => setCartVisible(false)}
+              >
+                <Text style={styles.closeButtonText}>Close</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.submitOrderButton}
+                onPress={() => handleSubmitOrder(false)}
+              >
+                <Text style={styles.closeButtonText}>Submit Order</Text>
+              </TouchableOpacity>
+            </>
           </View>
         </View>
       </Modal>
@@ -270,11 +388,14 @@ const NavigationBar = () => {
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
             <Text style={styles.modalTitle}>Previous Orders</Text>
-            <FlatList
-              data={orderHistory}
-              renderItem={renderOrderItem}
-              keyExtractor={(item, index) => index.toString()}
-            />
+            <View style={{ maxHeight: 400, flex: 1 }}>
+              <FlatList
+                data={orderHistory}
+                renderItem={renderOrderItem}
+                keyExtractor={(item, index) => index.toString()}
+              />
+            </View>
+
             <TouchableOpacity
               style={styles.closeButton}
               onPress={() => setOrderHistoryVisible(false)}
@@ -293,14 +414,17 @@ export default NavigationBar;
 const styles = StyleSheet.create({
   topBar: {
     height: 60,
-    backgroundColor: "#2c3e50",
+    backgroundColor: "#295272",
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "space-between", // 左右布局
     paddingHorizontal: 10,
+    position: "relative", // 允许子元素绝对定位
   },
   logoContainer: {
-    flex: 1,
+    position: "absolute", // 绝对定位
+    left: "52%", // 左侧距离占父容器宽度的 50%
+    transform: [{ translateX: -50 }], // 使 logo 水平居中
     justifyContent: "center",
     alignItems: "center",
   },
@@ -342,19 +466,35 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: "#ddd",
     paddingVertical: 10,
+    justifyContent: "space-between",
+  },
+  cartItemContent: {
+    flex: 2,
+    flexDirection: "column",
+    justifyContent: "center",
   },
   itemName: {
-    flex: 2,
     fontSize: 16,
+    flexWrap: "wrap",
+    wordWrap: "break-word",
+    maxWidth: "100%",
   },
+
   itemPrice: {
-    flex: 1,
-    fontSize: 16,
-    textAlign: "center",
+    fontSize: 15,
+    color: "#555",
+    marginTop: 2,
+  },
+
+  itemTotal: {
+    fontSize: 15,
+    color: "#555",
+    marginTop: 2,
   },
   quantityContainer: {
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "flex-end",
   },
   quantityInput: {
     borderWidth: 1,
@@ -362,7 +502,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingHorizontal: 5,
     textAlign: "center",
-    width: 50,
+    width: 30,
     marginHorizontal: 5,
   },
   incrementButton: {
@@ -377,14 +517,8 @@ const styles = StyleSheet.create({
   },
   deleteButton: {
     fontSize: 20,
-    color: "red",
+    color: "#f44336",
     marginRight: 10,
-  },
-  itemTotal: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "#333",
-    marginLeft: 10,
   },
   totalAmount: {
     fontSize: 18,
@@ -393,7 +527,15 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   closeButton: {
-    backgroundColor: "#3498db",
+    backgroundColor: "#f44336",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+    marginTop: 15,
+    alignSelf: "center",
+  },
+  submitOrderButton: {
+    backgroundColor: "#295272",
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
@@ -424,9 +566,16 @@ const styles = StyleSheet.create({
     fontWeight: "bold", // 订单号加粗
   },
   orderTime: {
-    fontSize: 14,
+    fontSize: 16,
     color: "#555", // 时间的灰色显示
-    marginBottom: 10, // 时间与订单详情的间距
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  orderTotal: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#333",
+    textAlign: "right",
   },
   orderDetails: {
     flexDirection: "row", // 每条订单详情水平布局
@@ -445,13 +594,7 @@ const styles = StyleSheet.create({
     flex: 1,
     textAlign: "right", // 金额对齐到右边
   },
-  orderTotal: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "#333",
-    marginTop: 10,
-    textAlign: "right",
-  },
+
   cartComboItem: {
     backgroundColor: "#f9f9f9",
     padding: 10,
@@ -474,9 +617,15 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   editButton: {
-    backgroundColor: "#4caf50",
+    backgroundColor: "#295272",
     padding: 5,
     borderRadius: 5,
+    color: "#fff",
+  },
+  editButtonText: {
+    color: "#fff",
+  },
+  deleteButtonText: {
     color: "#fff",
   },
   deleteButton: {
@@ -485,4 +634,24 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     color: "#fff",
   },
+  tableHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingVertical: 5,
+  },
+  headerDivider: {
+    borderBottomWidth: 2,
+    borderBottomColor: "#333",
+    marginBottom: 10,
+  },
+  itemDivider: {
+    borderBottomWidth: 1,
+    borderBottomColor: "#ccc",
+    marginVertical: 5,
+  },
+  // orderTotal: {
+  //   marginTop: 10,
+  //   fontWeight: "bold",
+  //   textAlign: "right",
+  // },
 });

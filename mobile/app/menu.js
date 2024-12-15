@@ -1,4 +1,4 @@
-import React from "react";
+import React, { use } from "react";
 import {
   View,
   Text,
@@ -18,12 +18,8 @@ import Toast from "react-native-toast-message";
 export default function Menu() {
   //菜单数据
   const [menuData, setMenuData] = useState([]);
-  //购物车数据
-  // const [cartItems, setCartItems] = useState([]);
   //分类数据
   const [categories, setCategories] = useState([]);
-  // 使用状态来保存每个菜单项的数量
-  // const [quantities, setQuantities] = useState({});
   //已选择的一级分类
   const [selectedCategory, setSelectedCategory] = useState(0);
   //已选择的二级分类
@@ -54,112 +50,126 @@ export default function Menu() {
         id: 1,
         name: "Chicken Broth",
         nameCN: "秦氏三鲜锅",
-        price: 1.0,
-        image: "./assets/broth1.png", // Placeholder 图片
+        price: 0.0,
+        image: require("../assets/broth1.png"), // Placeholder 图片
       },
       {
         id: 2,
-        name: "Spicy Broth1",
-        nameCN: "秦氏牛油火锅1",
+        name: "Variety Mushroom",
+        nameCN: "高山野生菌锅",
         price: 3.0,
-        image: "./assets/broth1.png",
+        image: require("../assets/broth1.png"),
       },
       {
         id: 3,
-        name: "Spicy Broth2",
-        nameCN: "秦氏牛油火锅2",
+        name: "Chine's Legendary Spicy Broth",
+        nameCN: "秦氏牛油火锅",
         price: 3.0,
-        image: "../assets/broth1.png",
+        image: require("../assets/broth1.png"),
       },
       {
         id: 4,
-        name: "Spicy Broth4",
-        nameCN: "秦氏牛油火锅4",
+        name: "Specialty Tomato Broth",
+        nameCN: "养颜番茄锅",
         price: 3.0,
-        image: "../assets/broth1.png",
-      },
-      {
-        id: 5,
-        name: "Spicy Broth5",
-        nameCN: "秦氏牛油火锅6",
-        price: 3.0,
-        image: "../assets/broth1.png",
-      },
-      {
-        id: 6,
-        name: "Spicy Broth6",
-        nameCN: "秦氏牛油火锅6",
-        price: 3.0,
-        image: "../assets/broth1.png",
-      },
-      {
-        id: 7,
-        name: "Spicy Broth7",
-        nameCN: "秦氏牛油火锅7",
-        price: 3.0,
-        image: "../assets/broth1.png",
-      },
-      {
-        id: 8,
-        name: "Spicy Broth8",
-        nameCN: "秦氏牛油火锅8",
-        price: 3.0,
-        image: "../assets/broth1.png",
-      },
-      {
-        id: 9,
-        name: "Spicy Broth9",
-        nameCN: "秦氏牛油火锅9",
-        price: 3.0,
-        image: "../assets/broth1.png",
+        image: require("../assets/broth1.png"),
       },
     ],
     vege: [
       {
-        id: 1,
-        name: "Chicken Broth",
-        nameCN: "蔬菜1",
+        id: 5,
+        name: "Spinach",
+        nameCN: "菠菜",
         price: 2.25,
-        image: "./assets/broth1.png", // Placeholder 图片
+        image: require("../assets/vegetable.png"), // Placeholder 图片
       },
       {
-        id: 2,
-        name: "Spicy Broth1",
-        nameCN: "蔬菜2",
-        price: 3.0,
-        image: "./assets/broth1.png",
+        id: 6,
+        name: "Cabbage",
+        nameCN: "大白菜",
+        price: 0.0,
+        image: require("../assets/vegetable.png"),
+      },
+      {
+        id: 7,
+        name: "Lettuce",
+        nameCN: "唐生菜",
+        price: 0.0,
+        image: require("../assets/vegetable.png"),
+      },
+      {
+        id: 8,
+        name: "Bean Sprout",
+        nameCN: "豆芽",
+        price: 0.0,
+        image: require("../assets/vegetable.png"),
+      },
+      {
+        id: 9,
+        name: "Broccoli",
+        nameCN: "西蓝花",
+        price: 0.0,
+        image: require("../assets/vegetable.png"),
       },
     ],
     meat: [
       {
-        id: 1,
-        name: "Chicken Broth",
-        nameCN: "肉类1",
-        price: 3.8,
-        image: "./assets/broth1.png", // Placeholder 图片
+        id: 10,
+        name: "Tenderloin Pork Slice",
+        nameCN: "老肉片",
+        price: 0.0,
+        image: require("../assets/meat.png"),
       },
       {
-        id: 2,
-        name: "Spicy Broth1",
-        nameCN: "肉类2",
-        price: 3.0,
-        image: "./assets/broth1.png",
+        id: 11,
+        name: "Chicken Slice",
+        nameCN: "鸡肉片",
+        price: 0.0,
+        image: require("../assets/meat.png"),
+      },
+      {
+        id: 12,
+        name: "Beef Tripe",
+        nameCN: "牛百叶",
+        price: 0.0,
+        image: require("../assets/meat.png"),
+      },
+      {
+        id: 13,
+        name: "Quail Egg",
+        nameCN: "鹌鹑蛋",
+        price: 0.0,
+        image: require("../assets/meat.png"),
+      },
+      {
+        id: 14,
+        name: "Spam",
+        nameCN: "午餐肉",
+        price: 0.0,
+        image: require("../assets/meat.png"),
       },
     ],
     main: [
       {
-        id: 1,
-        name: "Chicken Broth",
-        nameCN: "主食1",
-        price: 15.0,
-        image: "./assets/broth1.png", // Placeholder 图片
+        id: 15,
+        name: "Rice",
+        nameCN: "米饭",
+        price: 0.0,
+        image: require("../assets/rice.png"), // Placeholder 图片
       },
       {
-        id: 2,
-        name: "Spicy Broth1",
-        nameCN: "主食2",
-        price: 3.0,
-        image: "./assets/broth1.png",
+        id: 16,
+        name: "Udon Noodels",
+        nameCN: "乌冬面",
+        price: 0.0,
+        image: require("../assets/rice.png"),
+      },
+      {
+        id: 17,
+        name: "Ramen",
+        nameCN: "日式拉面",
+        price: 0.0,
+        image: require("../assets/rice.png"),
       },
     ],
   };
@@ -183,6 +193,10 @@ export default function Menu() {
     comboSelection,
     setComboSelection,
     clearComboSelection,
+    cartTotalPrice,
+    setCartTotalPrice,
+    cartStatus,
+    setCartStatus,
   } = useCart();
 
   const increaseQuantity = (item) => {
@@ -196,6 +210,15 @@ export default function Menu() {
   }, [quantities]);
 
   useEffect(() => {
+    console.log("-----Cart Items: ", cartItems);
+  }, [cartItems]);
+
+  useEffect(() => {
+    calculateTotalPrice();
+    updateCartStatus();
+  }, [cartItems]);
+
+  useEffect(() => {
     console.log("isComboPage:" + isComboPage);
     // console.log("cartItems" + JSON.stringify(cartItems));
   }, [isComboPage]);
@@ -203,6 +226,17 @@ export default function Menu() {
   useEffect(() => {
     console.log("-----comboSelection" + JSON.stringify(comboSelection));
   }, [comboSelection]);
+
+  const updateCartStatus = () => {
+    let comboInCart = false;
+    cartItems.forEach((item) => {
+      if (item.isCombo) {
+        comboInCart = true;
+      }
+    });
+    setCartStatus({ ...cartStatus, comboInCart: comboInCart });
+    console.log("cartStatus:" + JSON.stringify(cartStatus));
+  };
 
   const decreaseQuantity = (item) => {
     // setQuantities((prev) => ({
@@ -214,6 +248,14 @@ export default function Menu() {
     // console.log(cartItems);
   };
 
+  const calculateTotalPrice = () => {
+    const Sum = cartItems.reduce((acc, item) => {
+      const price = typeof item?.price === "number" ? item.price : 0;
+      const quantity = typeof item?.quantity === "number" ? item.quantity : 1;
+      return acc + price * quantity;
+    }, 0);
+    setCartTotalPrice(Sum);
+  };
   // 切换一级分类
   const handleCategoryChange = (index) => {
     setSelectedCategory(index);
@@ -365,10 +407,10 @@ export default function Menu() {
   //combo详情页面,选择菜品和锅底
   const renderComboDetails = () => {
     const isComboComplete =
-      comboSelection.broth &&
+      comboSelection.broth.filter((m) => m).length === 1 &&
       comboSelection.meats.filter((m) => m).length === 4 &&
       comboSelection.vegetables.filter((v) => v).length === 4 &&
-      comboSelection.staple; // Check if all required items are selected
+      comboSelection.staple.filter((m) => m).length === 1; // Check if all required items are selected
 
     const handleCancel = () => {
       clearComboSelection();
@@ -376,31 +418,31 @@ export default function Menu() {
     };
 
     const handleAddComboToCart = () => {
-      if (!isComboComplete) {
-        alert("Please select all required items before adding to the cart.");
-        return;
-      }
-
       //calculate total price
-      const totalPrice = calculateTotalPrice(comboSelection);
+      const totalPrice = calculateTotalComboPrice(comboSelection);
       // Add combo to the cart (example logic)
       const combo = {
         ...comboSelection,
         id: new Date().getTime(), // Unique ID for the combo
-        totalPrice: totalPrice,
+        price: totalPrice,
         isCombo: true,
       };
-
+      //if combo is already in cart, remove it first
+      // decreaseFromCart("combo");
+      const action = cartStatus.comboInCart ? "Edit cart" : "Add to cart";
       addToCart(combo);
-      setIsComboPage(false); // Return to the combo list
+      Toast.show({
+        type: "success",
+        text1: `${action} success`,
+      });
     };
 
-    function calculateTotalPrice(comboSelection) {
+    function calculateTotalComboPrice(comboSelection) {
       // 定义需要求和的属性名
       const keys = ["broth", "meats", "vegetables", "staple"];
 
       // 使用reduce对这些属性进行迭代求和
-      const totalPrice = keys.reduce((sum, key) => {
+      let totalPrice = keys.reduce((sum, key) => {
         // 从comboSelection安全获取对应数组，如果不是数组则使用空数组代替
         const arr = Array.isArray(comboSelection?.[key])
           ? comboSelection[key]
@@ -414,6 +456,8 @@ export default function Menu() {
 
         return sum + keySum;
       }, 0);
+
+      totalPrice += comboSelection.combo.price; // Add the combo price
 
       return totalPrice;
     }
@@ -434,7 +478,7 @@ export default function Menu() {
             .fill(0)
             .map((_, index) =>
               comboSelection.broth[index] ? (
-                <View style={styles.comboSelection}>
+                <View key={`broth-${index}`} style={styles.comboSelection}>
                   <Text style={styles.comboSelectedText}>
                     {comboSelection.broth[index].name} /{" "}
                     {comboSelection.broth[index].nameCN}
@@ -460,6 +504,7 @@ export default function Menu() {
                 </View>
               ) : (
                 <TouchableOpacity
+                  key={`broth-${index}`}
                   style={styles.comboButton}
                   onPress={() => openModal("broth", 0)}
                 >
@@ -476,7 +521,7 @@ export default function Menu() {
             .fill(0)
             .map((_, index) =>
               comboSelection.meats[index] ? (
-                <View key={index} style={styles.comboSelection}>
+                <View key={`meat-${index}`} style={styles.comboSelection}>
                   <Text style={styles.comboSelectedText}>
                     {comboSelection.meats[index].name} /{" "}
                     {comboSelection.meats[index].nameCN}
@@ -502,7 +547,7 @@ export default function Menu() {
                 </View>
               ) : (
                 <TouchableOpacity
-                  key={index}
+                  key={`meat-${index}`}
                   style={styles.comboButton}
                   onPress={() => openModal("meat", index)}
                 >
@@ -521,7 +566,7 @@ export default function Menu() {
             .fill(0)
             .map((_, index) =>
               comboSelection.vegetables[index] ? (
-                <View key={index} style={styles.comboSelection}>
+                <View key={`vegetable-${index}`} style={styles.comboSelection}>
                   <Text style={styles.comboSelectedText}>
                     {comboSelection.vegetables[index].name} /{" "}
                     {comboSelection.vegetables[index].nameCN}
@@ -547,7 +592,7 @@ export default function Menu() {
                 </View>
               ) : (
                 <TouchableOpacity
-                  key={index}
+                  key={`vegetable-${index}`}
                   style={styles.comboButton}
                   onPress={() => openModal("vegetable", index)}
                 >
@@ -566,7 +611,7 @@ export default function Menu() {
             .fill(0)
             .map((_, index) =>
               comboSelection.staple[index] ? (
-                <View style={styles.comboSelection}>
+                <View key={`staple-${index}`} style={styles.comboSelection}>
                   <Text style={styles.comboSelectedText}>
                     {comboSelection.staple[index].name} /{" "}
                     {comboSelection.staple[index].nameCN}
@@ -592,6 +637,7 @@ export default function Menu() {
                 </View>
               ) : (
                 <TouchableOpacity
+                  key={`staple-${index}`}
                   style={styles.comboButton}
                   onPress={() => openModal("staple", index)}
                 >
@@ -603,7 +649,7 @@ export default function Menu() {
           <View style={styles.actionButtons}>
             <TouchableOpacity
               style={styles.cancelButton}
-              onPress={() => handleCancel}
+              onPress={handleCancel}
             >
               <Text style={styles.cancelButtonText}>Cancel</Text>
             </TouchableOpacity>
@@ -614,12 +660,14 @@ export default function Menu() {
               ]}
               onPress={() => {
                 if (!isComboComplete) {
+                  const action = cartStatus.comboInCart
+                    ? "editing cart"
+                    : "adding to Cart";
                   // 弹出提示信息
                   Toast.show({
                     type: "error",
                     text1: "Error",
-                    text2:
-                      "You need to select all the items before adding to cart",
+                    text2: `You need to select all the items before ${action}`,
                     position: "top",
                   });
                 } else {
@@ -628,7 +676,9 @@ export default function Menu() {
                 }
               }}
             >
-              <Text style={styles.addToCartButtonText}>Add to Cart</Text>
+              <Text style={styles.addToCartButtonText}>
+                {cartStatus.comboInCart ? "Edit Cart" : "Add to Cart"}
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -639,10 +689,7 @@ export default function Menu() {
   //combo选择菜品和锅底的弹框列表
   const renderModalItem = ({ item }) => (
     <View style={styles.modalItem}>
-      <Image
-        source={require("../assets/broth1.png")}
-        style={styles.modalItemImage}
-      />
+      <Image source={item.image} style={styles.modalItemImage} />
       <View style={styles.modalItemContent}>
         <Text style={styles.modalItemName}>
           {item.name} / {item.nameCN}
@@ -909,7 +956,7 @@ export default function Menu() {
       {isComboPage && comboSelection.combo && renderComboDetails()}
 
       {/* combo 菜品选择弹框 */}
-      <Modal visible={ComboItemSelectModalVisible} animationType="slide">
+      <Modal visible={ComboItemSelectModalVisible} animationType="none">
         <View style={styles.modalContent}>
           <Text style={styles.modalTitle}>
             {modalType === "broth"
@@ -978,7 +1025,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 3, // 增加按钮间距
   },
   activeFilter: {
-    backgroundColor: "#4caf50",
+    backgroundColor: "#0f8024",
   },
   filterText: {
     fontSize: 16,
@@ -1003,24 +1050,36 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 4,
   },
+  // cardContent: {
+  //   flexDirection: "row",
+  //   justifyContent: "space-between",
+  //   marginBottom: 12,
+  // },
   cardContent: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 12,
+    alignItems: "center",
+    flexWrap: "wrap", // Allow the entire row to wrap when needed
+    paddingBottom: 10, // Add some padding to avoid text overlap
   },
   itemName: {
-    fontSize: 18,
+    fontSize: 14,
     fontWeight: "bold",
+    flexWrap: "wrap", // Allow text to wrap
+    maxWidth: "100%", // Limit width to 70% of the container to accommodate the price
+    marginRight: 10, // Add some spacing from the price
   },
+
   itemDescription: {
     fontSize: 14,
     color: "#555",
     marginTop: 4,
   },
   itemPrice: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "bold",
     color: "#333",
+    textAlign: "right", // Ensure the text aligns to the right
   },
   actions: {
     flexDirection: "row",
@@ -1044,18 +1103,19 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   quantityButton: {
-    backgroundColor: "#2ecc71",
-    borderRadius: 5,
-    width: 40,
-    height: 40,
+    backgroundColor: "#295272",
+    borderRadius: 50,
+    width: 20,
+    height: 20,
     justifyContent: "center",
     alignItems: "center",
     marginHorizontal: 8,
   },
   quantityIcon: {
     color: "#fff",
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: "bold",
+    textAlign: "center",
   },
   quantityValue: {
     fontSize: 16,
@@ -1086,13 +1146,13 @@ const styles = StyleSheet.create({
   modalItemName: { fontSize: 16, fontWeight: "bold" },
   modalItemPrice: { fontSize: 14, color: "#666" },
   selectButton: {
-    backgroundColor: "#4caf50",
+    backgroundColor: "#295272",
     padding: 5,
     borderRadius: 5,
   },
   selectButtonText: { color: "#fff", fontSize: 14 },
   closeButton: {
-    backgroundColor: "#3498db",
+    backgroundColor: "#f44336",
     padding: 10,
     marginTop: 20,
     alignItems: "center",
@@ -1114,7 +1174,7 @@ const styles = StyleSheet.create({
   },
 
   editButton: {
-    backgroundColor: "#4caf50",
+    backgroundColor: "#295272",
     paddingVertical: 5,
     paddingHorizontal: 10,
     borderRadius: 5,

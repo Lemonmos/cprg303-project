@@ -22,6 +22,12 @@ export const CartProvider = ({ children }) => {
     price: 0,
   });
 
+  const [cartTotalPrice, setCartTotalPrice] = useState(0);
+
+  const [cartStatus, setCartStatus] = useState({ comboInCart: false });
+
+  const [orderHistory, setOrderHistory] = useState([]);
+
   // Load cart data from AsyncStorage when the app starts
   useEffect(() => {
     const loadCart = async () => {
@@ -60,6 +66,16 @@ export const CartProvider = ({ children }) => {
       console.error("cartItems is not an array:", cartItems);
       return;
     }
+
+    // If the item is a combo, remove existing combo and add the new one
+    if (item.isCombo) {
+      setCartItems((prevCartItems) => {
+        // Remove existing combo and add the new one
+        return [...prevCartItems.filter((item) => !item.isCombo), item];
+      });
+      return;
+    }
+
     const existingItem = cartItems.find((i) => i.id === item.id);
     let updatedCart;
     if (existingItem) {
@@ -76,6 +92,16 @@ export const CartProvider = ({ children }) => {
   };
 
   const decreaseFromCart = (id) => {
+    if (id && id === "combo") {
+      // debugger;
+      const existingItem = cartItems.find((i) => i.isCombo);
+      if (existingItem) {
+        let updatedCart;
+        updatedCart = cartItems.filter((i) => !i.isCombo);
+        setCartItems(updatedCart);
+      }
+      return;
+    }
     const existingItem = cartItems.find((i) => i.id === id);
     if (existingItem) {
       let updatedCart;
@@ -105,6 +131,7 @@ export const CartProvider = ({ children }) => {
 
   const clearCart = () => {
     setCartItems([]);
+    setQuantities({});
     AsyncStorage.removeItem("cartData");
     // localStorage.removeItem("cartData");
   };
@@ -138,6 +165,12 @@ export const CartProvider = ({ children }) => {
         setComboSelection,
         clearComboSelection,
         editComboSelection,
+        cartTotalPrice,
+        setCartTotalPrice,
+        cartStatus,
+        setCartStatus,
+        orderHistory,
+        setOrderHistory,
       }}
     >
       {children}

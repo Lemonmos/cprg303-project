@@ -6,10 +6,10 @@ import { CartProvider } from "./context/cartContext";
 
 const Order = () => {
   return (
-    <CartProvider>
+    <>
       <NavigationBar />
       <Menu />
-    </CartProvider>
+    </>
   );
 };
 
